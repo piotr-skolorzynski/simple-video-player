@@ -3,6 +3,47 @@ html {
 }
 
 body {
+    padding-top: 5rem;
     box-sizing: border-box;
     font-family: 'Montserrat', sans-serif;
+    min-height: 100vh;
+    display: flex;
+    flex-direction: column;
+    justify-content: flex-start;
+    align-items: center;
+}
+
+.player-container {
+    padding: 2rem;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    border-radius: 15px;
+    overflow: hidden;
+    box-shadow: 0 0 15px 7px rgba(0, 0, 0, .25);
+}
+
+.player-buttons {
+    margin: 4rem 0 2.5rem;
+    width: 80%;
+    display: flex;
+    justify-content: space-between;
+    font-size: 2.5rem;
+}
+
+.fas {
+    padding: 1.5rem;
+    border-radius: 50%;
+    transition: color .5s, background-color .5s;
+}
+
+.fas:hover {
+    background-color: #000;
+    color: #fff;
+}
+
+.duration-info {
+    font-size: 1.6rem;
+    padding-left: 2rem;
+    align-self: flex-start;
 }
