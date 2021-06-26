@@ -31,15 +31,19 @@ body {
     font-size: 2.5rem;
 }
 
-.fas {
-    padding: 1.5rem;
+.player-btn {
     border-radius: 50%;
     transition: color .5s, background-color .5s;
+    cursor: pointer;
 }
 
-.fas:hover {
+.player-btn:hover {
     background-color: #000;
     color: #fff;
+}
+
+.fas {
+    padding: 1.5rem;
 }
 
 .duration-info {
