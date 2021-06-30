@@ -62,14 +62,11 @@ const handleClickedButtons = e => {
             pauseBtn.removeAttribute('data-pause');
             pauseBtn.setAttribute('data-play', '');
             break;
-        case 'volup':
-            turnUpVoice();
-            break;
-        case 'voldown':
-            turnDownVoice();
-            break;
     }
 };
+
+//dodano przycisk od stopu więc do ogarnięcia w handleClickedButtons
+//wprowadzić zdarzenie volume i tutaj najpierw podgłaśnianie a później może jaka animacja żeby pokazywał się dopiero na kliknięcie na głośniczek
 
 
 btnsContainer.addEventListener('click', handleClickedButtons);
