@@ -62,6 +62,14 @@ const handleClickedButtons = e => {
             pauseBtn.removeAttribute('data-pause');
             pauseBtn.setAttribute('data-play', '');
             break;
+        case 'stop':
+            video.currentTime = 0;
+            video.pause();
+            const pauseBtn2 = document.querySelector('[data-pause]');
+            pauseBtn2.innerHTML = '<i class="fas fa-play"></i>';
+            pauseBtn2.removeAttribute('data-pause');
+            pauseBtn2.setAttribute('data-play', '');
+            break;
     }
 };
 
