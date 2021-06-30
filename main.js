@@ -50,9 +50,17 @@ const handleClickedButtons = e => {
     switch (btnId[0]) {
         case 'play':
             video.play();
+            const playBtn = document.querySelector('[data-play]');
+            playBtn.innerHTML = '<i class="fas fa-pause"></i>';
+            playBtn.removeAttribute('data-play');
+            playBtn.setAttribute('data-pause', '');
             break;
         case 'pause':
             video.pause();
+            const pauseBtn = document.querySelector('[data-pause]');
+            pauseBtn.innerHTML = '<i class="fas fa-play"></i>';
+            pauseBtn.removeAttribute('data-pause');
+            pauseBtn.setAttribute('data-play', '');
             break;
         case 'volup':
             turnUpVoice();
