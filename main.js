@@ -17,13 +17,13 @@ const convertSeconds = timeToConvert =>{
 
 video.addEventListener('durationchange', () => {
     const convertedVideoDurationTime = convertSeconds(Math.floor(video.duration));
-    durationTime.innerText = `Czas trwania: ${convertedVideoDurationTime.minutes}:${convertedVideoDurationTime.seconds}`;
-
-    //poprawić
-    const convertedVideoCurrentTime = convertSeconds(Math.floor(video.currentTime));
-    durationStamp.innerText = `Czas odtwarzania: ${convertedVideoCurrentTime.minutes}:${convertedVideoCurrentTime.seconds}`;
-
+    durationTime.innerText = `${convertedVideoDurationTime.minutes}:${convertedVideoDurationTime.seconds}`;
 })
+
+video.addEventListener('timeupdate', () => {
+    const convertedVideoCurrentTime = convertSeconds(Math.floor(video.currentTime));
+    durationStamp.innerText = `${convertedVideoCurrentTime.minutes}:${convertedVideoCurrentTime.seconds}`;
+});
 
 const turnUpVoice = () => {
     // let currentVoiceVolume = video.volume;
