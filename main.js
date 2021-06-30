@@ -3,13 +3,26 @@ const video = document.querySelector('[data-video]');
 const btnsContainer = document.querySelector('[data-buttons]');
 // console.dir(btnsContainer);
 
-const durationInfo = document.querySelector('[data-duration]');
+const durationTime = document.querySelector('[data-duration]');
+const durationStamp = document.querySelector('[data-stamp]');
+
+const convertSeconds = timeToConvert =>{
+    let minutes = timeToConvert / 60 < 10 ? `0${Math.trunc(timeToConvert / 60)}` : `${Math.trunc(timeToConvert / 60)}`;
+    let seconds = timeToConvert % 60 < 10 ? `0${Math.trunc(timeToConvert % 60)}` : `${Math.trunc(timeToConvert % 60)}`;
+    let convertedSeconds = {};
+    convertedSeconds = {...convertedSeconds, minutes, seconds};
+    return convertedSeconds;
+}
+
 
 video.addEventListener('durationchange', () => {
-    let videoDurationTime = Math.floor(video.duration);
-    let minutes = videoDurationTime / 60 < 10 ? `0${Math.trunc(video.duration / 60)}` : `${Math.trunc(videoDurationTime / 60)}`;
-    let seconds = videoDurationTime % 60 < 10 ? `0${Math.trunc(video.duration % 60)}` : `${Math.trunc(videoDurationTime % 60)}`;
-    durationInfo.innerText = `Czas trwania: ${minutes}:${seconds}`;
+    const convertedVideoDurationTime = convertSeconds(Math.floor(video.duration));
+    durationTime.innerText = `Czas trwania: ${convertedVideoDurationTime.minutes}:${convertedVideoDurationTime.seconds}`;
+
+    //poprawić
+    const convertedVideoCurrentTime = convertSeconds(Math.floor(video.currentTime));
+    durationStamp.innerText = `Czas odtwarzania: ${convertedVideoCurrentTime.minutes}:${convertedVideoCurrentTime.seconds}`;
+
 })
 
 const turnUpVoice = () => {
