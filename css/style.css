@@ -3,6 +3,7 @@ html {
 }
 
 body {
+    position: relative;
     padding-top: 5rem;
     box-sizing: border-box;
     font-family: 'Montserrat', sans-serif;
@@ -23,6 +24,25 @@ body {
     box-shadow: 0 0 15px 7px rgba(0, 0, 0, .25);
 }
 
+.player-fullscreen {
+    margin: 0;
+    padding: 0;
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    border-radius: 0;
+    box-shadow: 0;
+}
+
+.video-fullscreen {
+    margin-top: 2rem;
+    width: 75%;
+    height: 75%;
+}
+
+
 .player-buttons {
     margin: 4rem 1rem 2.5rem;
     padding: 1rem;
@@ -33,6 +53,10 @@ body {
     background-color: #fff;
     border-radius: 10px;
     box-shadow: 0 0 5px 5px rgba(0, 0, 0, .05);
+}
+
+.btns-fullscreen {
+    width: 20%;
 }
 
 .player-btn {
@@ -55,6 +79,10 @@ body {
     font-size: 1.6rem;
     padding-left: 2rem;
     align-self: flex-start;
+}
+
+.duration-fullscreen {
+    align-self: center;
 }
 
 

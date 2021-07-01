@@ -1,10 +1,14 @@
+const player = document.querySelector('[data-player]');
 const video = document.querySelector('[data-video]');
-
 const btnsContainer = document.querySelector('[data-buttons]');
-// console.dir(btnsContainer);
-
+const durationContainer = document.querySelector('.duration-time');
 const durationTime = document.querySelector('[data-duration]');
 const durationStamp = document.querySelector('[data-stamp]');
+const volumeBtn = document.querySelector('[data-volume]');
+const inputVolume = document.querySelector('[data-videovolume]');
+const fullScreenBtn = document.querySelector('[data-fullscreen]');
+let isMuted = false;
+let isFullScreen = false;
 
 const convertSeconds = timeToConvert =>{
     let minutes = timeToConvert / 60 < 10 ? `0${Math.trunc(timeToConvert / 60)}` : `${Math.trunc(timeToConvert / 60)}`;
@@ -63,22 +67,81 @@ const handleClickedButtons = e => {
             pauseBtn.setAttribute('data-play', '');
             break;
         case 'stop':
+            const isPlaying = document.querySelector('[data-pause]');
+            if (isPlaying) {
+                isPlaying.innerHTML = '<i class="fas fa-play"></i>';
+                isPlaying.removeAttribute('data-pause');
+                isPlaying.setAttribute('data-play', '');
+            }
             video.currentTime = 0;
             video.pause();
-            const pauseBtn2 = document.querySelector('[data-pause]');
-            pauseBtn2.innerHTML = '<i class="fas fa-play"></i>';
-            pauseBtn2.removeAttribute('data-pause');
-            pauseBtn2.setAttribute('data-play', '');
+            video.volume = 1;
+            
+            //trzeba jeszcze aktualizować położenie suwaka inputa
+            // póki co to jest wielkie wyzwanie ;)
+
+            const inputVal = document.querySelector('[data-videovolume]');
+            inputVal.attributes.value = 1;
+            console.dir(inputVal);
+
+
+
+            volumeBtn.innerHTML = '<i class="fas fa-volume-up"></i>';
             break;
     }
 };
 
-//dodano przycisk od stopu więc do ogarnięcia w handleClickedButtons
+handleVideoVolume = e => {
+    video.volume = e.target.value;
+    if (video.volume == 0) {
+        volumeBtn.innerHTML = '<i class="fas fa-volume-mute"></i>';
+    }
+    if (video.volume <= .5 && video.volume > 0) {
+        volumeBtn.innerHTML = '<i class="fas fa-volume-down"></i>';
+    }
+    if (video.volume > .5) {
+        volumeBtn.innerHTML = '<i class="fas fa-volume-up"></i>';
+    }
+};
+
+handleMuteVideo = () => {
+    if (!isMuted) {
+        video.volume = 0;
+        volumeBtn.innerHTML = '<i class="fas fa-volume-mute"></i>';
+        isMuted = !isMuted;
+    } else {
+        video.volume = 1;
+        volumeBtn.innerHTML = '<i class="fas fa-volume-up"></i>';
+        isMuted = !isMuted;
+    }
+}
+
+handleFullscreen = () => {
+    if (!isFullScreen) {
+        player.classList.add('player-fullscreen');
+        video.classList.add('video-fullscreen');
+        btnsContainer.classList.add('btns-fullscreen');
+        durationContainer.classList.add('duration-fullscreen');
+        fullScreenBtn.innerHTML = '<i class="fas fa-compress"></i>';
+        isFullScreen = !isFullScreen;
+    } else {
+        player.classList.remove('player-fullscreen');
+        video.classList.remove('video-fullscreen');
+        btnsContainer.classList.remove('btns-fullscreen');
+        durationContainer.classList.remove('duration-fullscreen');
+        fullScreenBtn.innerHTML = '<i class="fas fa-expand"></i>';
+        isFullScreen = !isFullScreen;
+    }
+}
+
+
+
 //wprowadzić zdarzenie volume i tutaj najpierw podgłaśnianie a później może jaka animacja żeby pokazywał się dopiero na kliknięcie na głośniczek
 
-
 btnsContainer.addEventListener('click', handleClickedButtons);
-
+inputVolume.addEventListener('change', handleVideoVolume);
+volumeBtn.addEventListener('click', handleMuteVideo);
+fullScreenBtn.addEventListener('click', handleFullscreen);
 
 
 

@@ -15,15 +15,27 @@
 </head>
 <body>
 
-    <div class="player-container">
+    <div data-player class="player-container">
         <video data-video src="./video/sample-video.mp4"></video>
         <div data-buttons class="player-buttons">
-            <div data-play class="player-btn"><i class="fas fa-play"></i></div>
-            <div data-stop class="player-btn"><i class="fas fa-stop"></i></div>
-            <div data-volume class="player-btn"><i class="fas fa-volume-up"></i></div>
-            <input type="range" name="volume" min="0" max="1" step=".01" value="1">
+            <div data-play class="player-btn">
+                <i class="fas fa-play"></i>
+            </div>
+            <div data-stop class="player-btn">
+                <i class="fas fa-stop"></i>
+            </div>
+            <div data-volume class="player-btn">
+                <i class="fas fa-volume-up"></i>
+            </div>
+            <input type="range" name="volume" min="0" max="1" step=".01" value="1" data-videovolume>
+            <div data-fullscreen class="player-btn">
+                <i class="fas fa-expand"></i>
+            </div>
         </div>
-        <p class="duration-time">Czas trwania: <span class="time-span" data-stamp>00:00</span> / <span class="time-span" data-duration></span></p>
+        <p class="duration-time">
+            Czas trwania: <span class="time-span" data-stamp>
+            00:00</span> / <span class="time-span" data-duration></span>
+        </p>
     </div>
     
 </body>
