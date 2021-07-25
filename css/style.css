@@ -16,6 +16,7 @@ body {
 
 .player-container {
     padding: 2.2rem;
+    width: 450px;
     display: flex;
     flex-direction: column;
     align-items: center;
@@ -84,7 +85,6 @@ body {
 .duration-fullscreen {
     align-self: center;
 }
-
 
 /* custom style for input type="range" compatibile in all browsers https://css-tricks.com/styling-cross-browser-compatible-range-inputs-css/*/
 

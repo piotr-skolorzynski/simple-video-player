@@ -10,14 +10,13 @@ const fullScreenBtn = document.querySelector('[data-fullscreen]');
 let isMuted = false;
 let isFullScreen = false;
 
-const convertSeconds = timeToConvert =>{
+const convertSeconds = timeToConvert => {
     let minutes = timeToConvert / 60 < 10 ? `0${Math.trunc(timeToConvert / 60)}` : `${Math.trunc(timeToConvert / 60)}`;
     let seconds = timeToConvert % 60 < 10 ? `0${Math.trunc(timeToConvert % 60)}` : `${Math.trunc(timeToConvert % 60)}`;
     let convertedSeconds = {};
     convertedSeconds = {...convertedSeconds, minutes, seconds};
     return convertedSeconds;
 }
-
 
 video.addEventListener('durationchange', () => {
     const convertedVideoDurationTime = convertSeconds(Math.floor(video.duration));
@@ -30,27 +29,19 @@ video.addEventListener('timeupdate', () => {
 });
 
 const turnUpVoice = () => {
-    // let currentVoiceVolume = video.volume;
-    // console.log(currentVoiceVolume);
-
     if (video.volume < 1) {
         video.volume += .1;
     }
 };
 
 const turnDownVoice = () => {
-    // let currentVoiceVolume = video.volume;
-    // console.log(currentVoiceVolume);
-
     if (video.volume > 0) {
         video.volume -= .1;
     }
 };
 
 const handleClickedButtons = e => {
-    // console.log(e.target.parentElement.dataset);
     const btnId = Object.keys(e.target.parentElement.dataset);
-    // console.log(btnId)
     switch (btnId[0]) {
         case 'play':
             video.play();
@@ -76,16 +67,7 @@ const handleClickedButtons = e => {
             video.currentTime = 0;
             video.pause();
             video.volume = 1;
-            
-            //trzeba jeszcze aktualizować położenie suwaka inputa
-            // póki co to jest wielkie wyzwanie ;)
-
-            const inputVal = document.querySelector('[data-videovolume]');
-            inputVal.attributes.value = 1;
-            console.dir(inputVal);
-
-
-
+            inputVolume.value = 1;          
             volumeBtn.innerHTML = '<i class="fas fa-volume-up"></i>';
             break;
     }
@@ -133,8 +115,6 @@ handleFullscreen = () => {
         isFullScreen = !isFullScreen;
     }
 }
-
-
 
 //wprowadzić zdarzenie volume i tutaj najpierw podgłaśnianie a później może jaka animacja żeby pokazywał się dopiero na kliknięcie na głośniczek
 
